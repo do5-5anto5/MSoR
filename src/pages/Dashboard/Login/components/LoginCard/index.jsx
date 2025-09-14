@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useNavigate } from "react-router-dom";
 
 const schema = yup.object().shape({
   email: yup.string().email('Email inválido').required('Preencha o campo email'),
@@ -8,13 +9,16 @@ const schema = yup.object().shape({
 });
 
 export default function LoginCard() {
+  const navigate = useNavigate()
+
   const formObject = useForm({
     resolver: yupResolver(schema),
   });
 
-  function onSubmit(data) {
-    console.log(data);
+  function onSubmit() {
+    navigate('/dashboard')
   }
+
 
   return (
     <div className="bg-white px-6 py-8 rounded-lg shadow-md w-80">
