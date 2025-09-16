@@ -1,5 +1,21 @@
 @import "tailwindcss";
+@plugin "daisyui" {
+  themes: light --default, dark /* --prefersdark;*/;
+  root: ":root";
+  include: ;
+  exclude: ;
+  prefix: ;
+  logs: true;
+}
 
 @theme {
-    --color-primary: #3655c7
+    --color-primary: #3655c7;
+    --color-primary-dark: #293D87;
+    --color-secondary: #78e9f3;
+    --color-tabletitle: #858480;    
+}
+
+.custom-container {
+    @apply max-w-[1270px] w-[90];
+    @apply mx-auto;
 }
