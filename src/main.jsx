@@ -7,16 +7,25 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import "./index.css";
+import Dashboard from "./pages/Dashboard/index.jsx";
+import Layout from "./pages/Dashboard/Login/components/Layout/index.jsx";
 import DashboardLogin from "./pages/Dashboard/Login/index.jsx";
 
-const browserRouter = createBrowserRouter(createRoutesFromElements(
-  <Route path='/dashboard'>
-    <Route path='login' element={<DashboardLogin />} />
-  </Route>
-))
+const browserRouter = createBrowserRouter(
+  createRoutesFromElements(
+    <Route>
+      <Route path="/dashboard" element={<Layout />}>
+        <Route index element={<Dashboard />} />
+        <Route path="products" element={null} />
+        <Route path="categories" element={null} />
+      </Route>
+      <Route path="/dashboard/login" element={<DashboardLogin />} />
+    </Route>
+  )
+);
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={browserRouter}/>
+    <RouterProvider router={browserRouter} />
   </StrictMode>
 );
