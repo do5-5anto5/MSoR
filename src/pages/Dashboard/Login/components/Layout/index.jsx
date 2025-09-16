@@ -5,8 +5,7 @@ export default function Layout() {
   return (
     <>
       <Sidebar />
-      <main className="ml-60">
-        main content
+      <main className="ml-60 py-7.5">
         <Outlet />
       </main>
     </>
