@@ -8,8 +8,8 @@ import {
 } from "react-router-dom";
 import "./index.css";
 import Dashboard from "./pages/Dashboard/index.jsx";
-import Layout from "./pages/Dashboard/Login/components/Layout/index.jsx";
-import DashboardLogin from "./pages/Dashboard/Login/index.jsx";
+import Layout from "./pages/Dashboard/Login/components/Layout/Layout.jsx";
+import DashboardLogin from "./pages/Dashboard/Login/DashoardLogin.jsx";
 
 const browserRouter = createBrowserRouter(
   createRoutesFromElements(
