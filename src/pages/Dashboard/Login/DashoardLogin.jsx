@@ -1,5 +1,5 @@
 import LoginImage from "./components/DashBoardLoginImage.jsx";
-import LoginCard from "./components/LoginCard/LoginCard.js";
+import LoginCard from "./components/login-card/LoginCard.jsx";
 
 export default function DashboardLogin() {
   return (
