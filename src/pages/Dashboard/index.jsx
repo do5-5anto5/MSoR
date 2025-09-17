@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import { IoMdAddCircle as AddIcon } from "react-icons/io";
 export default function Dashboard() {
   const [page, setPage] = useState(1);
   const usersMock = [
@@ -44,20 +46,6 @@ export default function Dashboard() {
       createdAt: "00/00/6",
       updatedAt: "11/11/6",
     },
-    {
-      id: 6,
-      name: "Valeria",
-      email: "va@va.va",
-      createdAt: "00/00/6",
-      updatedAt: "11/11/6",
-    },
-    {
-      id: 6,
-      name: "Valeria",
-      email: "va@va.va",
-      createdAt: "00/00/6",
-      updatedAt: "11/11/6",
-    },
   ];
 
   let perPage = 2;
@@ -72,64 +60,72 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="custom-container items-center flex flex-col">
-      <h1 className="text-3xl font-medium">Users</h1>
-
-      <div className="overflow-x-auto mt-4">
-        <table
-          className="table table-zebra
-          w-full"
-        >
-          <thead className="text-tabletitle">
-            <tr>
-              <th>ID</th>
-              <th>Nome</th>
-              <th>Email</th>
-              <th>Criação</th>
-              <th>Atualização</th>
-            </tr>
-          </thead>
-          <tbody>
-            {usersMock.slice(0, page * perPage).map((user) => (
-              <tr key={user.id}>
-                <th>{user.id}</th>
-                <th>{user.name}</th>
-                <th>{user.email}</th>
-                <th>{user.createdAt}</th>
-                <th>{user.updatedAt}</th>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+    <div>
+      <div className="header">
+        <h1 className="h1-header">Usuários</h1>
+        <Link to="/dashboard/users/create">
+          <AddIcon className="text-4xl text-secondary mr-3" />
+        </Link>
       </div>
-      <div className=" p-4 flex justify-center gap-4 items-center">
-        <button
-          onClick={handlePreviousButton}
-          disabled={page === 1}
-          className={`px-6 py-2 rounded-lg font-medium transition-all ${
-            page === 1
-              ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-              : "bg-primary text-white hover:bg-primary-dark"
-          }`}
-        >
-          Anterior
-        </button>
+      <div className="custom-container items-center flex flex-col">
+        <div className="overflow-x-auto mt-4">
+          <table className="table w-full border-2 rounded-2xl overflow-hidden">
+            <thead className="text-tabletitle bg-tertiary">
+              <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Criação</th>
+                <th>Atualização</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {usersMock.slice(0, page * perPage).map((user, index) => (
+                <tr
+                  key={user.id}
+                  className={index % 2 === 0 ? "bg-slate-300" : "bg-slate-400"}
+                >
+                  <td>{user.id}</td>
+                  <td>{user.name}</td>
+                  <td>{user.email}</td>
+                  <td>{user.createdAt}</td>
+                  <td>{user.updatedAt}</td>
+                  <td><Link to={`/dashboard/users/edit/${user.id}`}>Editar</Link></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div className=" p-4 flex justify-center gap-16 items-center">
+          <button
+            onClick={handlePreviousButton}
+            disabled={page === 1}
+            className={`px-6 py-2 rounded-lg font-medium transition-all ${
+              page === 1
+                ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                : "bg-primary text-white hover:bg-primary-dark"
+            }`}
+          >
+            Anterior
+          </button>
 
-        <span className="text-sm text-gray-600">
-          Página {page} de {totalPages}
-        </span>
+          <span className="text-sm text-gray-600">
+            Página {page} de {totalPages}
+          </span>
 
-        <button
-          onClick={handleNextButton}
-          disabled={page === totalPages}
-          className={`px-6 py-2 rounded-lg font-medium transition-all ${
-            page === totalPages
-              ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-              : "bg-primary text-white hover:bg-primary-dark"
-          }`}
-        >
-          Próxima
-        </button>
+          <button
+            onClick={handleNextButton}
+            disabled={page === totalPages}
+            className={`px-6 py-2 rounded-lg font-medium transition-all ${
+              page === totalPages
+                ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                : "bg-primary text-white hover:bg-primary-dark"
+            }`}
+          >
+            Próxima
+          </button>
+        </div>
       </div>
     </div>
   );
