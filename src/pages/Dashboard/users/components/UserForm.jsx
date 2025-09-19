@@ -47,19 +47,21 @@ export default function UserForm(props) {
         formObject={formObject.register("email")}
         errorMessage={formObject.formState.errors.email?.message}
       />
-      <InputDefault
-        id={"password"}
-        label={"Senha"}
-        type={"password"}
-        placeholder={"Digite a senha"}
-        formObject={formObject.register("password")}
-        errorMessage={formObject.formState.errors.password?.message}
-      />
+      {props.userId ? null : (
+        <InputDefault
+          id={"password"}
+          label={"Senha"}
+          type={"password"}
+          placeholder={"Digite a senha"}
+          formObject={formObject.register("password")}
+          errorMessage={formObject.formState.errors.password?.message}
+        />
+      )}
       <select
         className="border-1 outline-none px-3 py-1 rounded-lg shadow-lg mt-4"
         {...formObject.register("role")}
       >
-        <option value="">Selecione</option>
+        <option value="">Selecione Cargo</option>
         <option value="1">ADMIN</option>
       </select>
       <button

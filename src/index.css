@@ -24,12 +24,16 @@
   @apply mx-auto;
 }
 
-.h1-header {
-  @apply text-3xl text-tertiary font-bold ml-20;
-}
-
 .header {
   @apply flex items-center justify-between;
   @apply bg-header shadow-lg;
   @apply py-4 px-6 ml-[-60px];
+}
+
+.h1-header {
+  @apply text-3xl text-tertiary font-bold ml-20;
+}
+
+.icon-header {
+  @apply text-4xl text-secondary mr-3;
 }
