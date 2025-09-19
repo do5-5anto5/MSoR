@@ -12,6 +12,9 @@ import Layout from "./pages/dashboard/login/components/layout/Layout.jsx";
 import CreateUser from "./pages/dashboard/users/create/Create.jsx";
 import DashboardLogin from "./pages/Dashboard/login/DashoardLogin.jsx";
 import EditUser from "./pages/dashboard/users/edit/Edit.jsx";
+import Categories from "./pages/dashboard/categories/Categories.jsx";
+import CreateCategory from "./pages/dashboard/categories/create/Create.jsx";
+import EditCategory from "./pages/dashboard/categories/edit/Edit.jsx";
 
 const browserRouter = createBrowserRouter(
   createRoutesFromElements(
@@ -21,7 +24,9 @@ const browserRouter = createBrowserRouter(
         <Route path="users/create" element={<CreateUser />} />
         <Route path="users/edit/:userId" element={<EditUser />} />
         <Route path="products" element={null} />
-        <Route path="categories" element={null} />
+        <Route path="categories" element={<Categories />} />
+        <Route path="categories/create" element={<CreateCategory />} />
+        <Route path="categories/edit/:categoryId" element={<EditCategory />} />
       </Route>
       <Route path="/dashboard/login" element={<DashboardLogin />} />
     </Route>
