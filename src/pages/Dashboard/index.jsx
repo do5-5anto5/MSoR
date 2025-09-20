@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { IoMdAddCircle as AddIcon } from "react-icons/io";
+import HeaderDefault from "./components/header-default/HeaderDefault";
 export default function Dashboard() {
   const [page, setPage] = useState(1);
   const usersMock = [
@@ -61,14 +62,13 @@ export default function Dashboard() {
 
   return (
     <div>
-      <div className="header">
-        <h1 className="h1-header">Usuários</h1>
-        <Link to="/dashboard/users/create">
-          <AddIcon className="text-4xl text-secondary mr-3" />
-        </Link>
-      </div>
+      <HeaderDefault
+        title="Usuários"
+        linkTo="/dashboard/users/create"
+        icon={<AddIcon className="icon-header" />}
+      />
       <div className="custom-container items-center flex flex-col">
-        <div className="overflow-x-auto mt-4">
+        <div className="overflow-x-auto mt-12">
           <table className="table w-full border-2 rounded-2xl overflow-hidden">
             <thead className="text-tabletitle bg-tertiary">
               <tr>
@@ -91,7 +91,9 @@ export default function Dashboard() {
                   <td>{user.email}</td>
                   <td>{user.createdAt}</td>
                   <td>{user.updatedAt}</td>
-                  <td><Link to={`/dashboard/users/edit/${user.id}`}>Editar</Link></td>
+                  <td>
+                    <Link to={`/dashboard/users/edit/${user.id}`}>Editar</Link>
+                  </td>
                 </tr>
               ))}
             </tbody>
