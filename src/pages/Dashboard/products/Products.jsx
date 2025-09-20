@@ -1,6 +1,7 @@
 import { useState } from "react";
 import HeaderDefault from "../components/header-default/HeaderDefault";
 import { Link } from "react-router-dom";
+import { IoMdAddCircle as AddIcon } from "react-icons/io";
 
 export default function Products() {
   const productsMock = [
@@ -100,7 +101,11 @@ export default function Products() {
 
   return (
     <div>
-      <HeaderDefault title="Produtos" />
+      <HeaderDefault
+        title="Produtos"
+        icon={<AddIcon className="icon-header" />}
+        linkTo="/dashboard/products/create"
+      />
       <div className="custom-container items-center flex flex-col">
         <div className="overflow-x-auto mt-4">
           <table className="table w-full border-2 rounded-2xl overflow-hidden">
@@ -132,7 +137,7 @@ export default function Products() {
                   <td>{product.createdAt}</td>
                   <td>{product.updatedAt}</td>
                   <td>
-                    <Link to={`/dashboard/categories/edit/${product.id}`}>
+                    <Link to={`/dashboard/products/edit/${product.id}`}>
                       Editar
                     </Link>
                   </td>
