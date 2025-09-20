@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
 import HeaderDefault from "../../components/header-default/HeaderDefault";
 import CategoryForm from "../components/category-form/CategoryForm";
-import InputDefault from "../../components/input-default/InputDefault";
 
 export default function EditCategory() {
   const params = useParams();
