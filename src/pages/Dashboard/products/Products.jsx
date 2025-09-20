@@ -107,7 +107,7 @@ export default function Products() {
         linkTo="/dashboard/products/create"
       />
       <div className="custom-container items-center flex flex-col">
-        <div className="overflow-x-auto mt-4">
+        <div className="overflow-x-auto mt-12">
           <table className="table w-full border-2 rounded-2xl overflow-hidden">
             <thead className="text-tabletitle bg-tertiary">
               <tr>
