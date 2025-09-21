@@ -1,9 +1,7 @@
 @import "tailwindcss";
-@plugin "daisyui" {
-  themes: light --default, dark /* --prefersdark;*/;
+@plugin "daisyui" {  
+  themes: light --default, dark;
   root: ":root";
-  include: ;
-  exclude: ;
   prefix: ;
   logs: true;
 }
@@ -36,4 +34,20 @@
 
 .icon-header {
   @apply text-4xl text-secondary mr-3;
+}
+
+.auth-card {
+  @apply bg-white;
+  @apply px-6 py-8;
+  @apply rounded-lg shadow-md;
+  @apply w-80;
+}
+.auth-form {
+  @apply flex flex-col gap-4;
+}
+
+.auth-page-image-container {
+  @apply bg-blue-300;
+  @apply flex flex-1 h-screen;
+  @apply items-center justify-center
 }

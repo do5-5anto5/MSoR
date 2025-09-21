@@ -1,16 +1,8 @@
-import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import InputDefault from "../../../components/input-default/InputDefault";
-
-const schema = yup.object().shape({
-  email: yup.string().email("Email inválido").required("Email é obrigatório"),
-  password: yup
-    .string()
-    .min(4, "Senha deve ter no mínimo 4 caracteres")
-    .required("Senha é obrigatório"),
-});
+import { schema } from "./schema";
 
 export default function LoginCard() {
   const navigate = useNavigate();
@@ -24,8 +16,8 @@ export default function LoginCard() {
   }
 
   return (
-    <div className="bg-white px-6 py-8 rounded-lg shadow-md w-80">
-      <form onSubmit={formObject.handleSubmit(onSubmit)}>
+    <div className="auth-card">
+      <form onSubmit={formObject.handleSubmit(onSubmit)} className="auth-form">
         <InputDefault
           id={"email"}
           label={"Email"}
