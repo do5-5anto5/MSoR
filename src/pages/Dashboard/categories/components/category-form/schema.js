@@ -3,6 +3,6 @@ import * as yup from "yup";
 export const schema = yup.object().shape({
   name: yup
     .string()
-    .required("Campo obrigatório")
+    .required("Campo necessário")
     .min(3, "Mínimo 3 caracteres")
 });

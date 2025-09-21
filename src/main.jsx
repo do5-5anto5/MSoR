@@ -11,17 +11,21 @@ import DashboardLogin from "./pages/Dashboard/login/DashoardLogin.jsx";
 import Categories from "./pages/dashboard/categories/Categories.jsx";
 import CreateCategory from "./pages/dashboard/categories/create/Create.jsx";
 import EditCategory from "./pages/dashboard/categories/edit/Edit.jsx";
-import Dashboard from "./pages/dashboard/index.jsx";
+import Dashboard from "./pages/dashboard/Dashboard.jsx";
 import Layout from "./pages/dashboard/login/components/layout/Layout.jsx";
 import Products from "./pages/dashboard/products/Products.jsx";
 import CreateProduct from "./pages/dashboard/products/create/Create.jsx";
 import EditProduct from "./pages/dashboard/products/edit/Edit.jsx";
 import CreateUser from "./pages/dashboard/users/create/Create.jsx";
 import EditUser from "./pages/dashboard/users/edit/Edit.jsx";
+import Register from "./pages/register/Register.jsx";
+import Login from "./pages/login/Login.jsx";
 
 const browserRouter = createBrowserRouter(
   createRoutesFromElements(
     <Route>
+      <Route path="register" element={<Register />} />
+      <Route path="login" element={<Login />} />
       <Route path="/dashboard" element={<Layout />}>
         <Route index element={<Dashboard />} />
         <Route path="users/create" element={<CreateUser />} />

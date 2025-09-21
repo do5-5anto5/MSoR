@@ -1,8 +1,8 @@
-import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import InputDefault from "../../../components/input-default/InputDefault";
-import { schema } from "./schema";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Link, useNavigate } from "react-router-dom";
+import schema from "./schema";
+import InputDefault from "../../../dashboard/components/input-default/InputDefault";
 
 export default function LoginCard() {
   const navigate = useNavigate();
@@ -14,7 +14,6 @@ export default function LoginCard() {
   function onSubmit() {
     navigate("/dashboard");
   }
-
   return (
     <div className="auth-card">
       <form onSubmit={formObject.handleSubmit(onSubmit)} className="auth-form">
@@ -34,13 +33,15 @@ export default function LoginCard() {
           formObject={formObject.register("password")}
           errorMessage={formObject.formState.errors.password?.message}
         />
-
         <button
           type="submit"
           className="mt-7 bg-blue-300 w-full py-2 rounded-lg text-white"
         >
-          Entrar
+          Cadastrar
         </button>
+        <Link to="/register" className="text-center text-blue-500">
+          Ainda não tem conta?
+        </Link>
       </form>
     </div>
   );
