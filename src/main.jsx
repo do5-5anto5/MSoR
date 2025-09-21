@@ -11,7 +11,7 @@ import DashboardLogin from "./pages/Dashboard/login/DashoardLogin.jsx";
 import Categories from "./pages/dashboard/categories/Categories.jsx";
 import CreateCategory from "./pages/dashboard/categories/create/Create.jsx";
 import EditCategory from "./pages/dashboard/categories/edit/Edit.jsx";
-import Dashboard from "./pages/dashboard/index.jsx";
+import Dashboard from "./pages/dashboard/Dashboard.jsx";
 import Layout from "./pages/dashboard/login/components/layout/Layout.jsx";
 import Products from "./pages/dashboard/products/Products.jsx";
 import CreateProduct from "./pages/dashboard/products/create/Create.jsx";
