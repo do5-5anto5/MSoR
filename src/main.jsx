@@ -20,10 +20,12 @@ import CreateUser from "./pages/dashboard/users/create/Create.jsx";
 import EditUser from "./pages/dashboard/users/edit/Edit.jsx";
 import Register from "./pages/register/Register.jsx";
 import Login from "./pages/login/Login.jsx";
+import Home from "./pages/home/Home.jsx";
 
 const browserRouter = createBrowserRouter(
   createRoutesFromElements(
     <Route>
+      <Route index element={<Home />} />
       <Route path="register" element={<Register />} />
       <Route path="login" element={<Login />} />
       <Route path="/dashboard" element={<Layout />}>
