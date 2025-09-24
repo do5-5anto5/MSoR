@@ -6,11 +6,17 @@ import { schema } from "./schema";
 
 export default function SearchBar(props) {
   const formObject = useForm({
-    resolver: yupResolver(schema)
+    resolver: yupResolver(schema),
   });
 
   function onSubmitHandler(data) {
     props.onSearch(data.searchValue);
+  }
+
+  function onChangeHandler(event) {
+    const searchValue = event.target.value;
+    formObject.setValue("searchValue", searchValue);
+    props.onChange(searchValue);
   }
 
   return (
@@ -27,7 +33,7 @@ export default function SearchBar(props) {
             p-2 w-3/4
             placeholder-gray-400
              "
-          {...formObject.register("searchValue")}
+          {...formObject.register("searchValue", { onChange: onChangeHandler })}
         />
         <button
           type="submit"
@@ -45,5 +51,6 @@ export default function SearchBar(props) {
 }
 
 SearchBar.propTypes = {
-    onSearch: PropTypes.func
-}
+  onSearch: PropTypes.func,
+  onChange: PropTypes.func,
+};

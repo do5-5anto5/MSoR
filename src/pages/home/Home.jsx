@@ -18,11 +18,20 @@ export default function Home() {
     }
   }
 
+  function onChangeSearchHandler(value) {
+    if (!value) {
+      setProducts(productsList);
+    }
+  }
+
   return (
     <div className="min-h-screen">
       <Header />
       <main className="px-12 pt-12 pb-60">
-        <SearchBar onSearch={onSearchHandler} />
+        <SearchBar
+          onSearch={onSearchHandler}
+          onChange={onChangeSearchHandler}
+        />
         <div className="mt-10">
           <h1 className="font-medium text-4xl">Produtos</h1>
           <ul className="grid grid-cols-4 mt-6 gap-4">
