@@ -1,12 +1,14 @@
 import PropTypes from "prop-types";
 import { IoCartOutline } from "react-icons/io5";
+import { formatToCurrency } from "../../../../../utils/formatToCurrency";
 
 export default function ProductCard(props) {
   return (
     <div className="rounded-2xl border border-gray-200 shadow-lg">
       <div className="h-36">
         <img
-          src={props.product.image}
+          // src={props.product.image}
+          src={"https://wx.mlcdn.com.br/ponzi/production/portaldalu/526.jpg"}
           className="w-full h-full object-cover rounded-2xl "
           alt="Nome do Produto"
         />
@@ -29,10 +31,7 @@ export default function ProductCard(props) {
         >
           <IoCartOutline className="text-3xl text-white" />
           <span className="text-lg font-medium">
-            {Intl.NumberFormat("pt-BR", {
-              currency: "BRL",
-              style: "currency",
-            }).format(props.product.price)}
+           {formatToCurrency(props.product.price)}
           </span>
         </button>
       </div>
