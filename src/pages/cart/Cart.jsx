@@ -1,10 +1,9 @@
-import { FaMinus, FaPlus, FaTrash } from "react-icons/fa";
 import { useState, useEffect } from "react";
+import { FaMinus, FaPlus, FaTrash } from "react-icons/fa";
 
 export default function Cart() {
   const [total, setTotal] = useState(0);
-
-  const items = [
+  const [items, setItems] = useState([
     {
       productId: 1,
       image: "https://m.media-amazon.com/images/I/81pieXC63IL.jpg",
@@ -29,24 +28,44 @@ export default function Cart() {
       qty: 3,
       subTotal: 9,
     },
-  ];
+  ]);
 
-  useEffect(() => {
+  const removeItem = (id) => {
+    const newItems = items.filter((item) => item.productId !== id);
+    setItems(newItems);
+  };
+
+  const changeQuantity = (id, qty) => {
+    if (qty < 1) return;
+    const newItems = items.map((item) => {
+      if (item.productId === id) {
+        return { ...item, qty, subTotal: item.price * qty };
+      }
+      return item;
+    });
+    setItems(newItems);
+  };
+
+  const calculateTotal = () => {
     let t = 0;
     items.forEach((item) => {
       t += item.subTotal;
     });
     setTotal(t);
-  }, []);
+  }
+
+  useEffect(() => {
+    calculateTotal();
+  })
 
   return (
     <main className="min-h-screen px-12 pt-10">
       <span className="text-2xl text-right font-medium block mb-6">
-        Total:{" "}
-        {Intl.NumberFormat("pt-BR", {
+        Total:
+        {`${Intl.NumberFormat("pt-BR", {
           currency: "BRL",
           style: "currency",
-        }).format(total)}
+        }).format(total)}`}
       </span>
       <div className="overflow-x-auto rounded-2xl">
         <table className="table">
@@ -83,7 +102,12 @@ export default function Cart() {
                 <td>
                   <div className="flex items-center gap-x-2">
                     <button>
-                      <FaPlus className="text-xs font-light text-blue-500" />
+                      <FaPlus
+                        onClick={() =>
+                          changeQuantity(item.productId, item.qty + 1)
+                        }
+                        className="text-xs font-light text-blue-500"
+                      />
                     </button>
                     <input
                       type="text"
@@ -91,7 +115,12 @@ export default function Cart() {
                       className="border-2 border-gray-300 rounded-lg p-2 w-10 text-center font-medium"
                     />
                     <button>
-                      <FaMinus className="text-xs font-light text-blue-500" />
+                      <FaMinus
+                        onClick={() =>
+                          changeQuantity(item.productId, item.qty - 1)
+                        }
+                        className="text-xs font-light text-blue-500"
+                      />
                     </button>
                   </div>
                 </td>
@@ -103,7 +132,7 @@ export default function Cart() {
                 </td>
                 <td>
                   <div className="flex justify-center">
-                    <button>
+                    <button onClick={() => removeItem(item.productId)}>
                       <FaTrash className="text-red-400" />
                     </button>
                   </div>
