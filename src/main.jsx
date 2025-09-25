@@ -21,11 +21,16 @@ import EditUser from "./pages/dashboard/users/edit/Edit.jsx";
 import Register from "./pages/register/Register.jsx";
 import Login from "./pages/login/Login.jsx";
 import Home from "./pages/home/Home.jsx";
+import BaseLayout from "./components/BaseLayout.jsx";
+import Cart from "./pages/cart/Cart.jsx";
 
 const browserRouter = createBrowserRouter(
   createRoutesFromElements(
     <Route>
-      <Route index element={<Home />} />
+      <Route path="/" element={<BaseLayout />}>
+        <Route index element={<Home />} />
+        <Route path="cart" element={<Cart />} />
+      </Route>
       <Route path="register" element={<Register />} />
       <Route path="login" element={<Login />} />
       <Route path="/dashboard" element={<Layout />}>
