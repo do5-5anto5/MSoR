@@ -8,7 +8,9 @@ export default function Header() {
   return (
     <div>
       <header className="py-4 px-12 flex justify-between items-center">
-        <span className="font-bold text-2xl">LOGO</span>
+        <span className="font-bold text-2xl">
+          <Link to="/">LOGO</Link>
+        </span>
         <div className="flex items-center gap-x-3 font-bold">
           <Link to="/cart">
             <CartIcon className="text-3xl text-gray-700 items-center" />

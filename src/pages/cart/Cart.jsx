@@ -1,5 +1,4 @@
 import { FaMinus, FaPlus, FaTrash } from "react-icons/fa";
-import Header from "../home/components/header/Header";
 
 export default function Cart() {
   const items = [
@@ -31,7 +30,6 @@ export default function Cart() {
 
   return (
     <div>
-      <Header />
       <main className="min-h-screen px-12 pt-10">
         <div className="overflow-x-auto rounded-2xl">
           <table className="table">
@@ -70,7 +68,7 @@ export default function Cart() {
                   <td>
                     <div className="flex items-center gap-x-2">
                       <button>
-                        <FaPlus className="text-xs font-light text-blue-500"/>
+                        <FaPlus className="text-xs font-light text-blue-500" />
                       </button>
                       <input
                         type="text"
@@ -78,7 +76,7 @@ export default function Cart() {
                         className="border-2 border-gray-300 rounded-lg p-2 w-10 text-center font-medium"
                       />
                       <button>
-                        <FaMinus  className="text-xs font-light text-blue-500"/>
+                        <FaMinus className="text-xs font-light text-blue-500" />
                       </button>
                     </div>
                   </td>
