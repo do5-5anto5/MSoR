@@ -1,6 +1,5 @@
 import { useState } from "react";
 import ProductCard from "./components/card/product/ProductCard";
-import Header from "./components/header/Header";
 import SearchBar from "./components/search-bar/SearchBar";
 import { products as productsList } from "./mocks";
 
@@ -26,7 +25,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
-      <Header />
       <main className="px-12 pt-12 pb-60">
         <SearchBar
           onSearch={onSearchHandler}
