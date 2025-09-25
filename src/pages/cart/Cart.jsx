@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { FaMinus, FaPlus, FaTrash } from "react-icons/fa";
+import { formatToCurrency } from "../../utils/formatToCurrency";
 
 export default function Cart() {
   const [total, setTotal] = useState(0);
@@ -61,11 +62,7 @@ export default function Cart() {
   return (
     <main className="min-h-screen px-12 pt-10">
       <span className="text-2xl text-right font-medium block mb-6">
-        Total:
-        {`${Intl.NumberFormat("pt-BR", {
-          currency: "BRL",
-          style: "currency",
-        }).format(total)}`}
+        Total: {`${formatToCurrency(total)}`}
       </span>
       <div className="overflow-x-auto rounded-2xl">
         <table className="table">
@@ -94,10 +91,7 @@ export default function Cart() {
                 </td>
                 <td>{item.name}</td>
                 <td>
-                  {Intl.NumberFormat("pt-BR", {
-                    currency: "BRL",
-                    style: "currency",
-                  }).format(item.price)}
+                  {formatToCurrency(item.price)}
                 </td>
                 <td>
                   <div className="flex items-center gap-x-2">
@@ -125,10 +119,7 @@ export default function Cart() {
                   </div>
                 </td>
                 <td>
-                  {Intl.NumberFormat("pt-BR", {
-                    currency: "BRL",
-                    style: "currency",
-                  }).format(item.subTotal)}
+                  {formatToCurrency(item.subTotal)}
                 </td>
                 <td>
                   <div className="flex justify-center">
