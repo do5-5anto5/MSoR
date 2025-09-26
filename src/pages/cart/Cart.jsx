@@ -1,63 +1,15 @@
-import { useState, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { FaMinus, FaPlus, FaTrash } from "react-icons/fa";
+import cartContext from "../../context/cart/cartContext";
 import { formatToCurrency } from "../../utils/formatToCurrency";
 
 export default function Cart() {
-  const [total, setTotal] = useState(0);
-  const [items, setItems] = useState([
-    {
-      productId: 1,
-      image: "https://m.media-amazon.com/images/I/81pieXC63IL.jpg",
-      name: "Tv",
-      price: 1,
-      qty: 1,
-      subTotal: 1,
-    },
-    {
-      productId: 2,
-      image: "https://t2.tudocdn.net/723333?w=1200&h=1200",
-      name: "Celular",
-      price: 2,
-      qty: 2,
-      subTotal: 4,
-    },
-    {
-      productId: 3,
-      image: "https://fujiokadistribuidor.vteximg.com.br/arquivos/ids/215620",
-      name: "Notebook",
-      price: 3,
-      qty: 3,
-      subTotal: 9,
-    },
-  ]);
-
-  const removeItem = (id) => {
-    const newItems = items.filter((item) => item.productId !== id);
-    setItems(newItems);
-  };
-
-  const changeQuantity = (id, qty) => {
-    if (qty < 1) return;
-    const newItems = items.map((item) => {
-      if (item.productId === id) {
-        return { ...item, qty, subTotal: item.price * qty };
-      }
-      return item;
-    });
-    setItems(newItems);
-  };
-
-  const calculateTotal = () => {
-    let t = 0;
-    items.forEach((item) => {
-      t += item.subTotal;
-    });
-    setTotal(t);
-  }
+  const { items, calculateTotal, total, changeQuantity, removeItem } =
+    useContext(cartContext);
 
   useEffect(() => {
     calculateTotal();
-  })
+  });
 
   return (
     <main className="min-h-screen px-12 pt-10">
@@ -90,9 +42,7 @@ export default function Cart() {
                   />
                 </td>
                 <td>{item.name}</td>
-                <td>
-                  {formatToCurrency(item.price)}
-                </td>
+                <td>{formatToCurrency(item.price)}</td>
                 <td>
                   <div className="flex items-center gap-x-2">
                     <button>
@@ -118,9 +68,7 @@ export default function Cart() {
                     </button>
                   </div>
                 </td>
-                <td>
-                  {formatToCurrency(item.subTotal)}
-                </td>
+                <td>{formatToCurrency(item.subTotal)}</td>
                 <td>
                   <div className="flex justify-center">
                     <button onClick={() => removeItem(item.productId)}>
