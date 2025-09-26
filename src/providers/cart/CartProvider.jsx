@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 // eslint-disable-next-line no-unused-vars
 import cartContext from "../../context/cart/cartContext";
+import { getFromLocalStorage, saveToLocalStorage } from "../../utils/localStorage";
 
 export default function CartProvider(props) {
   const [items, setItems] = useState([]);
@@ -15,6 +16,8 @@ export default function CartProvider(props) {
       }
       return item;
     });
+    // localStorage.setItem("cartItems", JSON.stringify(newItems));
+    saveToLocalStorage("cartItems", newItems);
     setItems(newItems);
   };
 
@@ -31,14 +34,23 @@ export default function CartProvider(props) {
     if (item) {
       changeQuantity(item.id, item.qty + 1);
     } else {
-      setItems([...items, { ...product, qty: 1, subTotal: product.price }]);
+      const data = [...items, { ...product, qty: 1, subTotal: product.price }];
+      saveToLocalStorage("cartItems", data);
+      setItems(data);
     }
   };
 
   const removeItem = (id) => {
     const newItems = items.filter((item) => item.productId !== id);
+    saveToLocalStorage("cartItems", newItems);
     setItems(newItems);
   };
+
+  useEffect(() => {
+    const cartItems = getFromLocalStorage("cartItems")
+    calculateTotal()
+    setItems(cartItems);
+  }, []);
 
   return (
     <cartContext.Provider
@@ -49,7 +61,7 @@ export default function CartProvider(props) {
         total,
         changeQuantity,
         calculateTotal,
-        removeItem
+        removeItem,
       }}
     >
       {props.children}
