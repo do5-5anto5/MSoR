@@ -6,26 +6,39 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
+import BaseLayout from "./components/BaseLayout.jsx";
 import "./index.css";
 import DashboardLogin from "./pages/Dashboard/login/DashoardLogin.jsx";
+import Cart from "./pages/cart/Cart.jsx";
+import Dashboard from "./pages/dashboard/Dashboard.jsx";
 import Categories from "./pages/dashboard/categories/Categories.jsx";
 import CreateCategory from "./pages/dashboard/categories/create/Create.jsx";
 import EditCategory from "./pages/dashboard/categories/edit/Edit.jsx";
-import Dashboard from "./pages/dashboard/Dashboard.jsx";
 import Layout from "./pages/dashboard/login/components/layout/Layout.jsx";
 import Products from "./pages/dashboard/products/Products.jsx";
 import CreateProduct from "./pages/dashboard/products/create/Create.jsx";
 import EditProduct from "./pages/dashboard/products/edit/Edit.jsx";
 import CreateUser from "./pages/dashboard/users/create/Create.jsx";
 import EditUser from "./pages/dashboard/users/edit/Edit.jsx";
-import Register from "./pages/register/Register.jsx";
-import Login from "./pages/login/Login.jsx";
 import Home from "./pages/home/Home.jsx";
+import Login from "./pages/login/Login.jsx";
+import Register from "./pages/register/Register.jsx";
+import CartProvider from "./providers/cart/CartProvider.jsx";
 
 const browserRouter = createBrowserRouter(
   createRoutesFromElements(
     <Route>
-      <Route index element={<Home />} />
+      <Route
+        path="/"
+        element={
+          <CartProvider>
+            <BaseLayout />
+          </CartProvider>
+        }
+      >
+        <Route index element={<Home />} />
+        <Route path="cart" element={<Cart />} />
+      </Route>
       <Route path="register" element={<Register />} />
       <Route path="login" element={<Login />} />
       <Route path="/dashboard" element={<Layout />}>

@@ -1,11 +1,22 @@
+import { useContext } from "react";
 import PropTypes from "prop-types";
 import { IoCartOutline } from "react-icons/io5";
+import { formatToCurrency } from "../../../../../utils/formatToCurrency";
+import cartContext from "../../../../../context/cart/cartContext";
 
 export default function ProductCard(props) {
+  const context = useContext(cartContext);
+
+  const addToCart = () => {
+   context.addItem({...props.product, productId: props.product.id});
+   context.setOpenCart
+  };
+
   return (
     <div className="rounded-2xl border border-gray-200 shadow-lg">
       <div className="h-36">
         <img
+          // src={props.product.image}
           src={props.product.image}
           className="w-full h-full object-cover rounded-2xl "
           alt="Nome do Produto"
@@ -19,6 +30,7 @@ export default function ProductCard(props) {
           Restam {props.product.stock} no estoque
         </span>
         <button
+          onClick={addToCart}
           className="
                   bg-primary text-white
                   rounded-2xl 
@@ -29,10 +41,7 @@ export default function ProductCard(props) {
         >
           <IoCartOutline className="text-3xl text-white" />
           <span className="text-lg font-medium">
-            {Intl.NumberFormat("pt-BR", {
-              currency: "BRL",
-              style: "currency",
-            }).format(props.product.price)}
+            {formatToCurrency(props.product.price)}
           </span>
         </button>
       </div>
