@@ -7,7 +7,7 @@ export default function Header() {
 
   return (
     <div>
-      <header className="py-4 px-12 flex justify-between items-center">
+      <header className="py-4 flex justify-between items-center">
         <span className="font-bold text-2xl">
           <Link to="/">LOGO</Link>
         </span>
